@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Listagem-cliente
+{% endblock %}
+
+
+
+{% block main %}
+{% if messages %}
+    {% for mesagem in messages %}
+        <div class="alert alert-success">
+            {{ mensagem }}
+        </div>
+    {% endfor %}
+{% endif %}
+        <ul class="list-group">
+            {% for i in dados %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        Nome: {{i.nome }}<br>
+                        Endereco:{%if i.endereco %} {{ i.endereco }}{% endif %} <br>
+                        Complemento: {% if i.complemento %} {{ i.complemento }} {% endif %}<br>
+                        Bairro: {% if i.bairro %}{{ i.bairro }} {%endif%} <br>
+                        Cidade: {% if i.cidade %} {{ i.cidade }} {%endif %}<br>
+                        E-mail: {% if i.email %} {{i.email }} {% endif %}<br>
+                        Fone:{% if i.fone %} {{ i.fone}} {% endif %} <br>
+                    </div>
+                    <div class="col" align="right">
+                        {% if i.foto %}
+                            <img src="{{ i.foto.url}}" width="200"> <br>
+                        {% else %}
+                            <img  src="{% static 'perfil.png' %}" width="400"> <br>
+                        {% endif %}
+                    <a href="{% url 'url_atualiza_cliente' i.id %}">Editar</a> &nbsp;
+                    <a href="{% url 'url_exclui_cliente' i.id %}">Excluir</a>
+                    </div>
+                </div>
+
+            </li>
+            {% endfor %}
+        </ul>
+
+    <button onclick="window.location.href= '/'">Voltar</button>
+{% endblock %}

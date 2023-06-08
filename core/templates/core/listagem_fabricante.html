@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  list-tab
+{% endblock %}
+
+{% block main %}
+  Listagem de tabela<br>
+        <ul class="list-group">
+            {% for i in dados %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        Nome = {{ i.nome}}<br>
+                        Url = {% if i.url %} {{ i.url }} {% endif %}<br>
+                    </div>
+                    <div class="col" align="right">
+                        {% if i.logo %}
+                            <img src="{{i.logo.url}}" width="100"><br>
+                        {% else %}
+                            <img src="{% static 'image.png' %}" width="80"><br>
+                        {% endif %}
+                        <a href="{% url 'url_atualiza_fabricante' i.id %}">Editar</a> &nbsp;
+                        <a href="{% url 'url_exclui_fabricante' i.id %}">Excluir</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    <button onclick="window.location.href= '/'">Voltar</button>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  list-tab
+{% endblock %}
+
+{% block main %}
+  Listagem de veiculo<br>
+    <ul class="list-group">
+        {% for i in dados %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        Placa: {{i.placa}}<br>
+                        Modelo: {% if i.modelo %}{{i.modelo}} {% endif %}<br>
+                        Fabricante: {{i.fabricante_id.nome}}<br>
+                        Proprietario: {{i.cliente_id.nome}}<br>
+                        Cor:{% if i.cor %}{{i.cor}} {% endif %}<br>
+                        Ano:{% if i.ano %}{{i.ano}} {% endif %}<br>
+                    </div>
+                    <div class="col" align="right">
+                        {% if i.foto %}
+                            <img src="{{i.foto.url}}" width="200"><br>
+                        {% else %}
+                            <img src="{% static 'image.png' %}" width="200"><br>
+                        {% endif %}
+                        <a href="{% url 'url_atualiza_veiculo' i.id %}">Editar</a> &nbsp;
+                        <a href="{% url 'url_exclui_veiculo' i.id %}">Excluir</a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+ <button onclick="window.location.href= '/'">Voltar</button>
+{% endblock %}

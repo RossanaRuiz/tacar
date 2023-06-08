@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  list-mens
+{% endblock %}
+
+{% block main %}
+  Listagem mensalista<br>
+{% for i in dados %}
+    Veiculo = {{ i.id_veiculo}}<br>
+    Tabela ={{ i.id_tabela}} <br>
+    Obs. =  {% if i.obsercacoes %} {{i.observacoes}} {% endif %}<br>
+
+    <a href="{% url 'url_atualiza_mensalista' i.id %}">Editar</a> &nbsp;
+    <a href="{% url 'url_exclui_mensalista' i.id %}">Excluir</a>
+
+--------------------------------------------------------------------<br>
+{% endfor %}
+    <button onclick="window.location.href= '/'">Voltar</button>
+{% endblock %}

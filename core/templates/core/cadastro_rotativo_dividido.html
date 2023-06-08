@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  cad_cli
+{% endblock %}
+
+{% block extrahead %}
+  {{ form.media }}
+{% endblock %}
+
+{%  load crispy_forms_tags %}
+
+{% block main %}
+    Formulario para cadastro <br>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-6">
+        {{ form.data_hora_entrada | as_crispy_field }}
+        {{ form.id_veiculo | as_crispy_field }}
+        {{ form.id_tabela | as_crispy_field }}
+    </div>
+    <div class="col-12 col-sm-12 col-md-6">
+        {{ form.data_hora_saida | as_crispy_field }}
+        {{ form.total | as_crispy_field }}
+        {{ form.pago | as_crispy_field }}
+        {{ form.observacoes | as_crispy_field }}
+    </div>
+</div>
+
+    <div class align="center">
+            <button class ="btn btn-primary" type="submit">{{ txt_button }}</button>
+            <button class ="btn btn-primary" onclick="window.location.href= '/'">Cancelar</button>
+    </div>
+
+</form>
+
+
+
+
+
+{% endblock %}

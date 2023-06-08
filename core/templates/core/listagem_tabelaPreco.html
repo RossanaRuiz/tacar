@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  list-tab
+{% endblock %}
+
+{% block main %}
+  Listagem de Tabela<br>
+{% for i in dados %}
+    descricao: {{i.descricao}}<br>
+    valor: {{i.valor}}<br>
+
+    <a href="{% url 'url_atualiza_tabelaPreco' i.id %}">Editar</a> &nbsp;
+    <a href="{% url 'url_exclui_tabelaPreco' i.id %}">Excluir</a>
+-----------------------------------------------------------------------------------<br>
+{% endfor %}
+ <button onclick="window.location.href= '/'">Voltar</button>
+{% endblock %}
